@@ -1,0 +1,15 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+{% extends 'base.html' %}
+{% block content %}
+<h1>Система контроля качества </h1>
+<p><a href="{% url 'quality_control:bug_list' %}"> Список всех багов</a><p>
+<p><a href="{% url 'quality_control:feature_list' %}">Запрос на улучшение</a><p>
+{% endblock %}
+    <!--</body>-->
+<!--</html>-->

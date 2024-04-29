@@ -1,43 +1,26 @@
 from django.db import models
-from django.contrib.auth.models import User  # Импорт модели пользователя Django
+from django.contrib.auth.models import User
 
+
+# Create your models here.
 class Project(models.Model):
-    name = models.CharField(max_length=100)  # Название проекта
-    description = models.TextField()  # Описание проекта
-    created_at = models.DateTimeField(auto_now_add=True)  # Дата и время создания записи
-    
+    name = models.CharField(max_length=100)
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now=True)
+
     def __str__(self):
-        return self.name  # Возвращает название проекта в качестве его строкового представления
+        return self.name
+
 
 class Task(models.Model):
-    
-    # Кортеж из возможных статусов задачи
-    STATUS_CHOICES = [  # Варианты статусов задачи
-        ('New', 'Новая'),
-        ('In_progress', 'В работе'),
-        ('Completed', 'Завершена'),
-    ]
-    
-    project = models.ForeignKey(  # Связь с моделью проекта
-        Project,  # Модель проекта
-        related_name='tasks',  # Имя обратной связи для доступа к связанным объектам из проекта
-        on_delete=models.CASCADE  # При удалении проекта, связанные с ним задачи также удаляются
-    )
-    name = models.CharField(max_length=100)  # Название задачи
-    description = models.TextField()  # Описание задачи
-    created_at = models.DateTimeField(auto_now_add=True)  # Дата и время создания записи
-    updated_at = models.DateTimeField(auto_now=True)  # Дата и время последнего обновления записи
-    assignee = models.ForeignKey(  # Связь с моделью пользователя (исполнитель задачи)
-        User,  # Модель пользователя Django
-        related_name='tasks',  # Имя обратной связи для доступа к связанным объектам из пользователя
-        on_delete=models.SET_NULL,  # При удалении пользователя, связанный с ним задачи устанавливаются в NULL
-        null=True,  # Разрешение значения NULL для поля assignee
-        blank=True  # Разрешение оставить поле пустым в административном интерфейсе
-    )
-    
-    # Новое поле статуса задачи
-    status = models.CharField(  # Поле статуса задачи
-        max_length=50,  # Максимальная длина поля
-        choices=STATUS_CHOICES,  # Возможные значения поля
-        default='New',  # Значение по умолчанию
-    )
+    STATUS_CHOICES = [('New', 'Новая'), ('In_progress', 'В работе'), ('Completed', 'Завершена')]
+    project = models.ForeignKey(Project, related_name='tasks', on_delete=models.CASCADE)
+    name = models.CharField(max_length=50, default="Page of project")
+    description = models.TextField()
+    created_at = models.DateTimeField(auto_now_add=True)
+    update_at = models.DateTimeField(auto_now=True)
+    assignee = models.ForeignKey(User, related_name='tasks', on_delete=models.SET_NULL, null=True, blank=True)
+    status = models.CharField(max_length=50, choices=STATUS_CHOICES, default='New')
+
+    def __str__(self):
+        return self.name

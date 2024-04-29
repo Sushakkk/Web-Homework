@@ -1,0 +1,19 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{bug.title}}</h1>
+<p><a href="{% url 'quality_control:update_BugReport' bug.id%}">Изменить отчёт</a>   <a href="{% url 'quality_control:delete_BugReport' bug.id%}">Удалить отчёт</a></p>
+    <p><i>Описание: </i> {{bug.description}}</p>
+    <p><i>Статус: </i> {{bug.status}}</p>
+    <p><i>Приоритет: </i> {{bug.priority}}</p>
+    <p><i>Проект: </i> <a href="{% url 'tasks:project_detail' bug.project.id %}">{{ bug.project.name }}</a>  </p>
+    <p><i>Задание: </i> <a href="{% url 'tasks:task_detail' bug.project.id bug.task.id %}">{{ bug.task.name }}</a>     <i>Статус:</i>{{bug.task.status}}</p>
+{% endblock %}
+<!--</body>-->
+<!--</html>-->

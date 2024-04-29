@@ -1,0 +1,19 @@
+<!--<!DOCTYPE html>-->
+<!--<html lang="en">-->
+<!--<head>-->
+<!--    <meta charset="UTF-8">-->
+<!--    <title>Title</title>-->
+<!--</head>-->
+<!--<body>-->
+{% extends 'base.html' %}
+{% block content %}
+<h1>{{feature.title}}</h1>
+<p><a href="{% url 'quality_control:update_FeatureRequest' feature.id%}">Изменить запрос</a>  <a href="{% url 'quality_control:delete_FeatureRequest' feature.id%}">Удалить запрос</a></p>
+    <p><i>Описание: </i> {{feature.description}}</p>
+    <p><i>Статус: </i> {{feature.status}}</p>
+    <p><i>Приоритет: </i> {{feature.priority}}</p>
+    <p><i>Проект: </i> <a href="{% url 'tasks:project_detail' feature.project.id %}">{{ feature.project.name }}</a>  </p>
+    <p><i>Задание: </i> <a href="{% url 'tasks:task_detail' feature.project.id feature.task.id %}">{{ feature.task.name }}</a>     <i>Статус:</i>{{feature.task.status}}</p>
+{%  endblock %}
+<!--</body>-->
+<!--</html>-->

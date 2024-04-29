@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Lenovo X1\OneDrive\Документы\JS\web\venv
+set VIRTUAL_ENV=C:\Users\dimar\OneDrive\Документы\Цифровая кафедра\Модуль Web-разработка\LMS\venv
 
 if not defined PROMPT set PROMPT=$P$G
 
